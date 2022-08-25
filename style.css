@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+  }
+
+html {
+    scroll-behavior: smooth;
+}
+    
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url(./assets/home.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    height: 100%;
+    margin: 40px;
+}
+
+header, footer {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    margin: 0px 20px;
+    width: 300px;
+}
+
+main {
+    height: 10%;
+}
+
+h1 {
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+
+form, .stages, .stage_1, .stage_2, .stage_3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.stages, .mythic_card, .сard_deck {
+    margin: 10px 15px;
+}
+
+.level, .mix, .colors {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 5px 20px;
+    color: white;
+    background: transparent;
+    border-color: white;
+    border-radius: 16px;
+}
+
+.mix_btn {
+    width: 300px;
+    height: 50px;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 20px;
+    color: white;
+    background: red;
+    border-color: white;
+    border-radius: 16px;
+}
+
+h4 {
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+.color {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 15px 15px 25px;
+}
+
+.green {
+    background-color: green;
+}
+.brown {
+    background-color: brown;
+}
+.blue {
+    background-color: blue;
+}
+
+.mythic_card {
+    background-image: url(./assets/mythicCardBackground.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+.mythic_card, .сard_deck {
+    width: 280px;
+    height: 420px;
+}
+
+
+
+/** 
+
+    
+    
+    max-width: 1440px;
+    
+}   
+*/
