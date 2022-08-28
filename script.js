@@ -15,6 +15,7 @@ header.addEventListener('click', (e) => {
     const className = e.target.className;
     let numberAncient = getNumberAncient(className);
     coloredAncient(numberAncient);
+    getNumberOfCards(numberAncient);
     if (h1.className.includes('h1_active')) {
         clearBackground();
         mix_btn.classList.remove('mix_btn_active');
@@ -22,16 +23,20 @@ header.addEventListener('click', (e) => {
     }
     h1.classList.add('h1_active');
     level.classList.add('level_active');
-    mix_btn.onclick = (e) => {
+    level.addEventListener('click', (e) => {
+        const levelClass = e.target.className;
+        clearBackground();
+        paintBackground(levelClass);
+        mix_btn.classList.add('mix_btn_active');
+        let allCards = getAllCards(levelClass);
+        let cards = getPlaingCards(numberAncient, allCards);
+        mix_btn.onclick = (e) => {
         footer.classList.add('footer_active');
-        getNumberOfCards(numberAncient);
-        getAllCards();
-        getPlaingCards(numberAncient);
-    }; 
-    let cards = getPlaingCards(numberAncient);
-    mythic_card.onclick = (e) => {
+        }; 
+        mythic_card.onclick = (e) => {
         enterCards(cards);
     };
+    });
 })
 
 function getNumberAncient(ancient) {
@@ -67,12 +72,6 @@ function getNumberOfCards(ancient) {
 }    
 
 /*Выбор уровня*/
-level.addEventListener('click', (e) => {
-    const className = e.target.className;
-    clearBackground();
-    paintBackground(className);
-    mix_btn.classList.add('mix_btn_active');
-});
 function clearBackground() {
     let btnActive = document.querySelectorAll('button');
     for (let i=0; i<btnActive.length; i++) {
@@ -82,33 +81,73 @@ function clearBackground() {
     }
 }
 function paintBackground(btn) {
-    let btnActive = document.querySelector(`.${btn}`);
-    btnActive.classList.add('btn_active');
+    let active = document.querySelector(`.${btn}`);
+    active.classList.add('btn_active');
 }
 
-/*Отбор исходных карт средней сложности*/
-function getAllCards(){
+/*Отбор исходных карт средней сложности в зависимости от уровня*/
+function getAllCards(difficulty){
     let greenCards = [];
     let brownCards = [];
     let blueCards = [];
-    for (let i=0; i<cardsDataGreen.length; i++) {
-        greenCards.push(cardsDataGreen[i].cardFace);
-    }       
-     for (let i=0; i<cardsDataBrown.length; i++) {
-        brownCards.push(cardsDataBrown[i].cardFace);
-    }       
-    for (let i=0; i<cardsDataBlue.length; i++) {
-        blueCards.push(cardsDataBlue[i].cardFace);
-    }       
-    return {greenCards, brownCards, blueCards};
+    if (difficulty == 'easy'){
+        for (let i=0; i<cardsDataGreen.length; i++) {
+            if ((cardsDataGreen[i].difficulty=='normal')||(cardsDataGreen[i].difficulty=='easy')) {
+            greenCards.push(cardsDataGreen[i].cardFace);
+            }
+        }  
+        for (let i=0; i<cardsDataBrown.length; i++) {
+            if ((cardsDataBrown[i].difficulty=='normal')||(cardsDataBrown[i].difficulty=='easy')) {
+                brownCards.push(cardsDataBrown[i].cardFace);
+             }
+        }  
+        for (let i=0; i<cardsDataBlue.length; i++) {
+            if ((cardsDataBlue[i].difficulty=='normal')||(cardsDataBlue[i].difficulty=='easy')) {
+                blueCards.push(cardsDataBlue[i].cardFace);
+             }
+        } 
+    }
+    if (difficulty == 'normal') {
+        for (let i=0; i<cardsDataGreen.length; i++) {
+            greenCards.push(cardsDataGreen[i].cardFace);
+        }       
+        for (let i=0; i<cardsDataBrown.length; i++) {
+            brownCards.push(cardsDataBrown[i].cardFace);
+        }       
+        for (let i=0; i<cardsDataBlue.length; i++) {
+            blueCards.push(cardsDataBlue[i].cardFace);
+        } 
+    }  
+    if (difficulty == 'hard'){
+        for (let i=0; i<cardsDataGreen.length; i++) {
+            if ((cardsDataGreen[i].difficulty=='normal')||(cardsDataGreen[i].difficulty=='hard')) {
+            greenCards.push(cardsDataGreen[i].cardFace);
+            }
+        }  
+        for (let i=0; i<cardsDataBrown.length; i++) {
+            if ((cardsDataBrown[i].difficulty=='normal')||(cardsDataBrown[i].difficulty=='hard')) {
+                brownCards.push(cardsDataBrown[i].cardFace);
+             }
+        }  
+        for (let i=0; i<cardsDataBlue.length; i++) {
+            if ((cardsDataBlue[i].difficulty=='normal')||(cardsDataBlue[i].difficulty=='hard')) {
+                blueCards.push(cardsDataBlue[i].cardFace);
+             }
+        } 
+    }
+    let allCards = [];
+    allCards.push(greenCards);
+    allCards.push(brownCards);
+    allCards.push(blueCards);
+    return allCards;
 }
 
 /*Отбор колоды карт для игры*/
-function getPlaingCards(ancient) {
+function getPlaingCards(ancient, all) {
     /*перетасовка исходных карт разных цветов*/
-    const greenCards = getAllCards().greenCards;
-    const brownCards = getAllCards().brownCards;
-    const blueCards = getAllCards().blueCards;
+    const greenCards = all[0];
+    const brownCards = all[1];
+    const blueCards = all[2];
     const allGreenCards = greenCards.sort(()=>Math.random()-0.5);
     const allBrownCards = brownCards.sort(()=>Math.random()-0.5);
     const allBlueCards = blueCards.sort(()=>Math.random()-0.5);
@@ -170,7 +209,6 @@ function getPlaingCards(ancient) {
     plaingCards.push(getThird);
     plaingCards.push(getSecond);
     plaingCards.push(getFirst);
-    console.log (plaingCards);
     return plaingCards;
 }
 
@@ -234,6 +272,5 @@ function enterCards(cards) {
     } 
     console.log (lastElem);
     сard_deck.style.backgroundImage =`url(${lastElem})`;
-    console.log (lastElem);
 }
 
