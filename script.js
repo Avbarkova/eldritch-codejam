@@ -9,13 +9,13 @@ const level = document.querySelector('.level');
 const mix_btn = document.querySelector('.mix_btn');
 const footer = document.querySelector('footer');
 const mythic_card = document.querySelector('.mythic_card');
+const сard_deck = document.querySelector('.сard_deck');
 
 /*Выбор древнего*/
 header.addEventListener('click', (e) => {
     const className = e.target.className;
     let numberAncient = getNumberAncient(className);
     coloredAncient(numberAncient);
-    getNumberOfCards(numberAncient);
     if (h1.className.includes('h1_active')) {
         clearBackground();
         mix_btn.classList.remove('mix_btn_active');
@@ -25,17 +25,22 @@ header.addEventListener('click', (e) => {
     level.classList.add('level_active');
     level.addEventListener('click', (e) => {
         const levelClass = e.target.className;
+        if (footer.className.includes('footer_active')) {
+            footer.classList.remove('footer_active');
+        }
         clearBackground();
-        paintBackground(levelClass);
-        mix_btn.classList.add('mix_btn_active');
+        сard_deck.style.backgroundImage = 'none';
+        paintBackground(levelClass, className);
+        getNumberOfCards(numberAncient);
         let allCards = getAllCards(levelClass);
-        let cards = getPlaingCards(numberAncient, allCards);
+        mix_btn.classList.add('mix_btn_active');
         mix_btn.onclick = (e) => {
-        footer.classList.add('footer_active');
+            let cards = getPlaingCards(numberAncient, allCards);
+            footer.classList.add('footer_active');
+            mythic_card.onclick = (e) => {
+                enterCards(cards);
+            };
         }; 
-        mythic_card.onclick = (e) => {
-        enterCards(cards);
-    };
     });
 })
 
@@ -80,9 +85,11 @@ function clearBackground() {
         }
     }
 }
-function paintBackground(btn) {
+function paintBackground(btn, head) {
+    let headerClass = document.querySelector(`.${head}`);
+    if (headerClass.className.includes('img_active')) {
     let active = document.querySelector(`.${btn}`);
-    active.classList.add('btn_active');
+    active.classList.add('btn_active');}
 }
 
 /*Отбор исходных карт средней сложности в зависимости от уровня*/
@@ -214,8 +221,8 @@ function getPlaingCards(ancient, all) {
 
 /*ввод игральных карт в игру при клике на рубашку*/
 function enterCards(cards) {
-    console.log (cards);
     const сard_deck = document.querySelector('.сard_deck');
+    console.log (cards);
     const st1 = document.querySelectorAll('.firstStage');
     const st2 = document.querySelectorAll('.secondStage');
     const st3 = document.querySelectorAll('.thirdStage');
