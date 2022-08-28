@@ -4,61 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Codejam</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
  <header>
-    <div><img class="Azathoth" src="./assets/Ancients/Azathoth.png"></div>
-    <div><img class="Cthulthu" src="./assets/Ancients/Cthulthu.png"></div>
-    <div><img class="IogSothoth" src="./assets/Ancients/IogSothoth.png"></div>
-    <div><img class="ShubNiggurath" src="./assets/Ancients/ShubNiggurath.png"></div>
+    <div><img class="azathoth" src="./assets/Ancients/Azathoth.png"></div>
+    <div><img class="cthulthu" src="./assets/Ancients/Cthulthu.png"></div>
+    <div><img class="iogSothoth" src="./assets/Ancients/IogSothoth.png"></div>
+    <div><img class="shubNiggurath" src="./assets/Ancients/ShubNiggurath.png"></div>
  </header>
  <main>
-    <h1>Уровень сложности</h1>
+    <h1>Выбери сложность</h1>
     <form>
         <div class="level">
-            <button class="btn too_easy_btn" type="button">Очень легкий</button>
-            <button class="btn easy_btn" type="button">Легкий</button>
-            <button class="btn normal_btn" type="button">Средний</button>
-            <button class="btn hard_btn" type="button">Высокий</button>
-            <button class="btn too_hard_btn" type="button">Очень высокий</button>
+            <button class="too_easy" type="button">Очень низкая</button>
+            <button class="easy" type="button">Низкая</button>
+            <button class="normal" type="button">Средняя</button>
+            <button class="hard" type="button">Высокая</button>
+            <button class="too_hard" type="button">Очень высокая</button>
         </div>
         <div class="mix">
-            <button class="mix_btn" type="button">Перемешать</button>
+            <button class="mix_btn" type="button">Замешать колоду</button>
         </div>
     </form>
  </main>
 <footer>
     <div class="stages">
-        <div class="stage_1">
+        <div class="stage">
             <h4>Первая стадия</h4>
             <div class="colors">
-                <div class="color green"></div>
-                <div class="color brown"></div>
-                <div class="color blue"></div>
+                <div class="color firstStage greenCards" id="st1"></div>
+                <div class="color firstStage brownCards" id="st1"></div>
+                <div class="color firstStage blueCards" id="st1"></div>
             </div>
         </div>
-        <div class="stage_2">
+        <div class="stage">
             <h4>Вторая стадия</h4>
             <div class="colors">
-                <div class="color green"></div>
-                <div class="color brown"></div>
-                <div class="color blue"></div>
+                <div class="color secondStage greenCards" id="st2"></div>
+                <div class="color secondStage brownCards" id="st2"></div>
+                <div class="color secondStage blueCards" id="st2"></div>
             </div>
         </div>
-        <div class="stage_3">
+        <div class="stage">
             <h4>Третья стадия</h4>
             <div class="colors">
-                <div class="color green"></div>
-                <div class="color brown"></div>
-                <div class="color blue"></div>
+                <div class="color thirdStage greenCards" id="st3"></div>
+                <div class="color thirdStage brownCards" id="st3"></div>
+                <div class="color thirdStage blueCards" id="st3"></div>
             </div>
         </div>
     </div>
     <div class="mythic_card"></div>
     <div class="сard_deck"></div>
 </footer>
-    <script type="module" src="js/index.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
