@@ -13,7 +13,7 @@ body {
     background-image: url(./assets/home.png);
     background-position: center top;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     position: relative;
     height: 100%;
     margin: 40px;
@@ -26,7 +26,7 @@ header, footer {
 
 img {
     margin: 0px 20px;
-    width: 300px;
+    width: 280px;
     opacity: 0.5;
 }
 .img_active {
@@ -85,6 +85,10 @@ footer {
     background: transparent;
     border-color: white;
     border-radius: 16px;
+}
+
+.too_easy, .too_hard {
+    display: none;
 }
 
 .btn_active {
