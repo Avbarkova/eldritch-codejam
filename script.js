@@ -234,5 +234,6 @@ function enterCards(cards) {
     } 
     console.log (lastElem);
     сard_deck.style.backgroundImage =`url(${lastElem})`;
+    console.log (lastElem);
 }
 
